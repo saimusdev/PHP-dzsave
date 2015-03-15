@@ -18,23 +18,22 @@ OBJS := \
 	$(OBJDIR)/test.o
 
 # Binaries full path
-CC := /usr/local/bin/gcc-4.9
-LD := /usr/local/bin/gcc-4.9
+CC := gcc 
+LD := gcc 
 
 # Libraries
-#LIBS := -L/usr/local/lib
+LIBS := `pkg-config vips --libs`
 
 # Compiler flags
-CFLAGS := -g -Wall -O3 #-DDEBUG
+CFLAGS := -g -Wall -O3 `pkg-config vips --cflags` #-DDEBUG
 
 # Includes
 IFLAGS := \
-	#-I/usr/local/Cellar/glib/2.42.1/include/glib-2.0/ \
 	-I. \
 	-I$(INCLUDEDIR)
 
 # Linker options
-#LDFLAGS	:=
+#LDFLAGS :=
 
 # Random stuff
 MSG_EMPTYLINE := "" 
