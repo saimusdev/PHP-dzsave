@@ -1,8 +1,3 @@
-/* compile with:
- *
- *      gcc -g -Wall test.c `pkg-config vips --cflags --libs` -o test
- */
-
 #include <stdio.h>
 #include <vips/vips.h>
 #include <vips/foreign.h>
@@ -34,9 +29,6 @@ main(int argc, char **argv)
 		vips_error_exit(NULL);
 	}
 
-//int vips_openslideload(const char *filename, VipsImage **out, ...)
-//int vips_dzsave(VipsImage *in, const char *name, ...)
-
 	if(argc < 3) {
 		vips_error_exit("usage: %s infile outfile dzsave-options...", argv[0]); 
 	}	
@@ -47,7 +39,11 @@ main(int argc, char **argv)
 
 	printf( "image width = %d\n", vips_image_get_width( in ) ); 	
 
-	if(vips_dzsave(in, argv[2], &argv[3]) < 0) {
+	printf("Argv 2: %s\n", argv[1]);
+	printf("Argv 3: %s\n", argv[2]);
+
+	if(im_vips2dz(in, argv[2]) < 0) {
+		fprintf(stderr, "im_vips2dz error\n");
 		vips_error_exit(NULL);
 	}	
 
