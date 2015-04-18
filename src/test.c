@@ -1,8 +1,3 @@
-/* compile with:
- *
- *      gcc -g -Wall test.c `pkg-config vips --cflags --libs` -o test
- */
-
 #include <stdio.h>
 #include <vips/vips.h>
 #include <vips/foreign.h>
@@ -17,13 +12,19 @@ main(int argc, char **argv)
 		vips_error_exit(NULL); 
 	}
 
+
 	if(argc < 3) {
 		vips_error_exit("usage: %s infile outfile dzsave-options...", argv[0]); 
 	}	
 
+	printf("Argv 2: %s\n", argv[1]);
+	printf("Argv 3: %s\n", argv[2]);
+
 	if(vips_openslideload(argv[1], &in, NULL) < 0) {
 		vips_error_exit("could not open slide");
 	}	
+
+	printf( "image width = %d\n", vips_image_get_width( in ) ); 	
 
 	/*
 	VIPS_FOREIGN_DZ_LAYOUT_ZOOMIFY - Zoomify
